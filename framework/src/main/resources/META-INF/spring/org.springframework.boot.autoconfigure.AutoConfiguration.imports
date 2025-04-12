@@ -1,0 +1,4 @@
+
+
+com.kongji.onecoupon.framework.config.WebAutoConfiguration
+com.kongji.onecoupon.framework.config.IdempotentConfiguration

@@ -1,0 +1,75 @@
+
+
+server:
+  port: 10000
+
+spring:
+  application:
+    name: oneCoupon-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.227.130:8848
+        enabled: true
+      password: nacos
+      username: nacos
+    gateway:
+      routes:
+        - id: oneCoupon-merchant-admin
+          uri: lb://oneCoupon-merchant-admin/api/merchant-admin/**
+          predicates:
+            - Path=/api/merchant-admin/**
+        #          暂时先不加黑名单
+        #          filters:
+        #            - name: TokenValidate
+        #              args:
+        #                blackPathPre:
+        #                  - /api/merchant-admin/coupon-task/create
+        #                  - /api/merchant-admin/coupon-task/page
+        #                  - /api/merchant-admin/coupon-template/create
+        #                  - /api/merchant-admin/coupon-template/page
+
+        - id: oneCoupon-engine
+          uri: lb://oneCoupon-enginekongji/api/engine/**
+          predicates:
+            - Path=/api/engine/**
+        #          暂时先不加黑名单
+        #          filters:
+        #            - name: TokenValidate
+        #              args:
+        #                blackPathPre:
+        #                  - /api/engine/coupon-template/redeem
+        #                  - /api/engine/coupon-template-remind/create
+        #                  - /api/engine/coupon-template-remind/list
+        #                  - /api/engine/coupon-template-remind/cancel
+
+        - id: oneCoupon-settlement
+          uri: lb://oneCoupon-settlementkongji/api/settlement/**
+          predicates:
+            - Path=/api/settlement/**
+
+        - id: oneCoupon-distribution
+          uri: lb://oneCoupon-distributionkongji/api/distribution/**
+          predicates:
+            - Path=/api/distribution/**
+
+        - id: oneCoupon-search
+          uri: lb://oneCoupon-search/api/search/**
+          predicates:
+            - Path=/api/search/**
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"  # 允许所有域名（生产环境应替换为前端域名）
+            allowedMethods: "*"  # 允许所有方法（GET/POST/OPTIONS等）
+            allowedHeaders: "*"  # 允许所有请求头
+            maxAge: 3600         # 预检请求缓存时间（秒）
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  metrics:
+    tags:
+      application: ${spring.application.name}

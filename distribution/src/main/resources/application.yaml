@@ -1,0 +1,33 @@
+server:
+  port: 10040
+
+spring:
+  application:
+    name: oneCoupon-distribution
+  datasource:
+    driver-class-name: org.apache.shardingsphere.driver.ShardingSphereDriver
+    url: jdbc:shardingsphere:classpath:shardingsphere-config.yaml
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.227.130:8848
+        enabled: true
+      password: nacos
+      username: nacos
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      password: 123456
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+rocketmq:
+  name-server: 127.0.0.1:9876
+  producer:
+    group: oneCoupon_distribution${unique-name:}-service_common-message-execute_pg
+    send-message-timeout: 2000
+    retry-times-when-send-failed: 1
+    retry-times-when-send-async-failed: 1
