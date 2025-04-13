@@ -9,6 +9,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @version 1.0
  * @data 2025/4/11
  */
+
+/**
+ *
+ * MVC 配置
+ */
 @Configuration
 public class MvcConfiguration implements WebMvcConfigurer {
     @Override
