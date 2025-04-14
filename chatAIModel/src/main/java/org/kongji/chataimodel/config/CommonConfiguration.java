@@ -26,10 +26,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 @Configuration
 public class CommonConfiguration {
 
-    @Bean
-    public ChatMemory chatMemory(RedisTemplate<String, Message> redisTemplate) {
-        return new OneCouponChatMemory(redisTemplate);
-    }
 
     @Bean
     public ChatClient chatClient(OllamaChatModel model, ChatMemory chatMemory) {

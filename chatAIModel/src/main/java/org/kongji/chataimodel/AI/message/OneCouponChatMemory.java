@@ -5,6 +5,7 @@ import org.kongji.chataimodel.common.constant.ChatMemoryRedisConstant;
 import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.messages.Message;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Component;
 
 
 import java.util.Collections;
@@ -22,6 +23,7 @@ import java.util.concurrent.TimeUnit;
  *
  * 实现记忆接口自定义记忆类
  */
+@Component
 public class OneCouponChatMemory implements ChatMemory {
 
     private final RedisTemplate<String, Message> redisTemplate;

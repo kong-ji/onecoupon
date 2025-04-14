@@ -14,4 +14,8 @@ public final class ChatMemoryRedisConstant {
      * AI记忆缓存 Key
      */
     public static final String COUPON_AI_CONVERSATIONS_KEY = "one-coupon_ai:user-chat-memory:%s";
+    /**
+     * AI聊天历史 业务类型 Key
+     */
+    public static final String COUPON_AI_HISTORY_MESSAGE_CHAT_TYPE_IDS_KEY = "one-coupon_ai:user-chat-history-type-ids:%s";
 }
