@@ -2,6 +2,7 @@
 
 package com.kongji.onecoupon.framework.result;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -47,6 +48,8 @@ public class Result<T> implements Serializable {
      */
     private String requestId;
 
+    @JsonProperty("success")
+    private Boolean success;
     public boolean isSuccess() {
         return SUCCESS_CODE.equals(code);
     }

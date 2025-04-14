@@ -15,7 +15,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum OneCouponAITypeEnum {
 
-    CHAT("chat");
+    CHAT("chat"),
+    SERVICE("service");
+
 
     @Getter
     private final String type;

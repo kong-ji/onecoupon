@@ -2,7 +2,8 @@ server:
   port: 8888
 spring:
   application:
-    name: chat-ai
+    name: oneCoupon-AI
+
   ai:
     ollama:
       base-url: http://localhost:11434
@@ -15,12 +16,27 @@ spring:
       chat:
         options:
           model: qwen-max-0125 # 可选择的模型
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.227.130:8848
+        enabled: true
+      password: nacos
+      username: nacos
+    inetutils:
+      preferred-networks: 192.168    # 强制使用 IPv4（避免 IPv6 检测问题）
   data:
     redis:
       host: 127.0.0.1
       port: 6379
       password: 123456
-
+feign:
+  client:
+    config:
+      default:  # 全局默认配置
+        connect-timeout: 5000  # 连接超时（毫秒）
+        read-timeout: 10000    # 读取超时（毫秒）
+        logger-level: basic    # 日志级别（basic / full / none）
 
 
 logging:
