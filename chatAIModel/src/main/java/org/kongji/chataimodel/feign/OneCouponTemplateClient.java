@@ -30,7 +30,7 @@ public interface OneCouponTemplateClient {
     @PostMapping("/api/engine/coupon-template/query")
     Result<CouponTemplateQueryRespDTO> getOneCouponTemplate(@RequestBody CouponTemplateQueryReqDTO couponTemplateQueryReqDTO);
 
-    @GetMapping("/api/engine/coupon-template/query/all)")
+    @GetMapping("/api/engine/coupon-template/query/all")
     Result<List<CouponTemplateQueryRespDTO>>findOneCouponTemplate();
 
     @PostMapping("/api/engine/coupon-template-remind/create")

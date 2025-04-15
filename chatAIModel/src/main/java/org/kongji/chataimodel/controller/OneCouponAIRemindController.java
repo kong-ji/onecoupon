@@ -2,7 +2,7 @@ package org.kongji.chataimodel.controller;
 
 import com.kongji.onecoupon.framework.result.Result;
 import lombok.RequiredArgsConstructor;
-import org.kongji.chataimodel.AI.dto.resp.CouponTemplateRemindQueryRespDTO;
+import org.kongji.chataimodel.AI.dto.resp.CouponTemplateQueryRespDTO;
 import org.kongji.chataimodel.AI.message.ChatHistoryRepository;
 import org.kongji.chataimodel.common.enums.OneCouponAITypeEnum;
 import org.kongji.chataimodel.feign.OneCouponTemplateClient;
@@ -27,15 +27,9 @@ import static org.springframework.ai.chat.client.advisor.AbstractChatMemoryAdvis
 public class OneCouponAIRemindController {
 
     private final ChatClient serviceChatClient;
-    private final OneCouponTemplateClient oneCouponTemplateClient;
     private final ChatHistoryRepository chatHistoryRepository;
 
-    @GetMapping("/feign")
-    public Result<List<CouponTemplateRemindQueryRespDTO>> findOneCouponTemplate() {
-        Result<List<CouponTemplateRemindQueryRespDTO>> oneCouponTemplate = oneCouponTemplateClient.listCouponRemind();
-        return oneCouponTemplate;
-    }
-
+    
     @RequestMapping(value = "/service", produces = "text/html;charset=utf-8")
     public Flux<String> service(String prompt, String chatId) {
 
